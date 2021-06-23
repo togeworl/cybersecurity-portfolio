@@ -66,11 +66,11 @@ The ELK installation playbook implements the following tasks:
 - A Docker ELK container is downloaded and launched with images and published ports
 - Docker is booted 
 
-!(Images/ELK_Playbook_YML.jpg)
+![ELK Playbook](https://github.com/togeworl/cybersecurity-portfolio/blob/b48a0cf59b9f0ad60947a30fc7af1f1ef5256137/Images/ELK_Playbook_YML.jpg)
 
 The following screenshot displays the result of running `sudo docker container ls -a` after successfully configuring the ELK instance.
 
-!(Images/ELK_Docker_PS.jpg)
+![List ELK Containers](https://github.com/togeworl/cybersecurity-portfolio/blob/b48a0cf59b9f0ad60947a30fc7af1f1ef5256137/Images/ELK_Docker_PS.jpg)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
@@ -84,8 +84,8 @@ We have installed the following Beats on these machines:
 These Beats allow us to collect the following information from each machine:
 - Filebeat and Metricbeat are both Elastic Beats and are based on the libbeat framework. Filebeat monitors log files or locations, collects log events, and forwards them either to Elasticsearch or Logstash for indexing. Metricbeat periodically collects metrics from the operating system and from servers running on the server and forwards them to either Elasticsearch or Logstash. Metricbeat monitors services such as Apache, MySQL, or Nginx, as well as many others. 
 - For more details, the following links are provided: 
--- [Filebeat](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-overview.html)
--- [Metricbeat](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-overview.html)
+  [Filebeat](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-overview.html)
+  [Metricbeat](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-overview.html)
 
 
 ### Using the Playbook
@@ -97,19 +97,19 @@ SSH into the control node and follow the steps below:
 
 - Update the hosts file in the ansible directory to include the correct hosts and groups, such as a webservers group with Web-1 and Web-2 IP addresses listed; also add "ansible_python_interpreter=/usr/bin/python3" after the IP address 
 
-! (Images/ansiblehostsfile.jpg)
+![Ansible hosts file](https://github.com/togeworl/cybersecurity-portfolio/blob/b48a0cf59b9f0ad60947a30fc7af1f1ef5256137/Images/ansiblehostsfile.jpg)
 
 - Update the installation playbook file with the correct file paths and hosts 
 
 - Update the matching configuration .yml file with the following changes:
  
--- For Filebeat: 
---- Scroll to line #1106 and replace the IP address with the internal IP address of the ELK server (not the public IP) 
---- Scroll to line #1806 and replace the IP address with the internal IP address of the ELK server 
+*For Filebeat:* 
+  - *Scroll to line #1106 and replace the IP address with the internal IP address of the ELK server (not the public IP)* 
+  - *Scroll to line #1806 and replace the IP address with the internal IP address of the ELK server* 
 
--- For Metricbeat: 
---- Scroll to line #62 and replace the IP address with the internal IP address of the ELK server (not the public IP); leave the port as 5601 
---- Scroll to line #95 and replace the IP address with the IP address of of the ELK server; leave the port as 9200 
+*For Metricbeat:* 
+  - *Scroll to line #62 and replace the IP address with the internal IP address of the ELK server (not the public IP); leave the port as 5601* 
+  - *Scroll to line #95 and replace the IP address with the IP address of of the ELK server; leave the port as 9200* 
 
 - Make sure to save the files after making the changes 
  
@@ -118,42 +118,52 @@ SSH into the control node and follow the steps below:
 ### Commands
 
 To generate an SSH key: 
-$ ssh-keygen 
+
+- $ ssh-keygen 
 - If generating a key inside of an Ansible container for a webserver or other machine inside of the network, do not set a passphrase in order to enable automation of configuration 
 
 To SSH into the JumpBox Provisioner VM from local machine: 
-$ ssh -i (full path to the private ssh key used when setting up the VMs in the Azure portal) username@ip_of_jumpbox 
+
+- $ ssh -i (full path to the private ssh key used when setting up the VMs in the Azure portal) username@ip_of_jumpbox 
 - Enter passphrase for ssh key when prompted 
 - This will take the user into the JumpBox
 - Example command: ssh -i ~/.ssh/id_rsa azadmin@52.152.235.68 
 
 To install Docker in the JumpBox: 
-$ sudo apt install docker.io 
+
+- $ sudo apt install docker.io 
 
 To pull Ansible image: 
-$ sudo docker pull cyberxsecurity/ansible 
+
+- $ sudo docker pull cyberxsecurity/ansible 
 
 To see what images are pulled: 
-$ sudo docker images 
+
+- $ sudo docker images 
 
 To create a container: 
-$ sudo docker run -ti --name (name of container) (image) bash 
+
+- $ sudo docker run -ti --name (name of container) (image) bash 
 - Can use any unique name, and include an image that has already been pulled, such as cyberxsecurity/ansible 
 
 To start a container: 
-$ sudo docker start (name of container) 
+
+- $ sudo docker start (name of container) 
 - Only start a container once if it is not running, otherwise it will create a new container each time it is started 
 
 To get into a container: 
-$ sudo docker exec -ti (name of container) bash 
+
+- $ sudo docker exec -ti (name of container) bash 
 - There are other commands that will do the same thing 
 
 To see what Docker containers are available: 
-$ sudo docker container ls -a 
+
+- $ sudo docker container ls -a 
 - This will list all the containers with their Container ID, Image, Command, Creation Date, Status, Ports, and Names 
 
 To run an Ansible playbook ./yml file: 
-$ ansible-playbook elk.yml 
+
+- $ ansible-playbook elk.yml 
 - Use for any Ansible playbook file 
 
 
