@@ -1,0 +1,36 @@
+---
+  - name: Install DVWA
+    become: yes
+    hosts: webservers
+    tasks:
+
+    - name: install docker
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+        force_apt_get: yes
+
+    - name: install pip3
+      apt:
+        force_apt_get: yes
+        name: python3-pip
+        state: present
+
+    - name: install python docker module
+      pip:
+        name: docker
+        state: present
+
+    - name: install dvwa docker container
+      docker_container:
+        name: dvma
+        image: cyberxsecurity/dvwa
+        state: started
+        restart_policy: always
+        published_ports: 80:80
+
+    - name: enable docker service
+      systemd:
+        name: docker
+        enabled: yes
