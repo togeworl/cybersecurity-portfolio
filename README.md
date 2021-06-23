@@ -103,11 +103,11 @@ SSH into the control node and follow the steps below:
 
 - Update the matching configuration .yml file with the following changes:
  
-*For Filebeat:* 
+- *For Filebeat:* 
   - *Scroll to line #1106 and replace the IP address with the internal IP address of the ELK server (not the public IP)* 
-  - *Scroll to line #1806 and replace the IP address with the internal IP address of the ELK server* 
+  -  *Scroll to line #1806 and replace the IP address with the internal IP address of the ELK server* 
 
-*For Metricbeat:* 
+- *For Metricbeat:* 
   - *Scroll to line #62 and replace the IP address with the internal IP address of the ELK server (not the public IP); leave the port as 5601* 
   - *Scroll to line #95 and replace the IP address with the IP address of of the ELK server; leave the port as 9200* 
 
@@ -125,9 +125,9 @@ To generate an SSH key:
 To SSH into the JumpBox Provisioner VM from local machine: 
 
 - $ ssh -i (full path to the private ssh key used when setting up the VMs in the Azure portal) username@ip_of_jumpbox 
-- Enter passphrase for ssh key when prompted 
-- This will take the user into the JumpBox
-- Example command: ssh -i ~/.ssh/id_rsa azadmin@52.152.235.68 
+  - Enter passphrase for ssh key when prompted 
+  - This will take the user into the JumpBox
+  - Example command: ssh -i ~/.ssh/id_rsa azadmin@52.152.235.68 
 
 To install Docker in the JumpBox: 
 
@@ -144,27 +144,27 @@ To see what images are pulled:
 To create a container: 
 
 - $ sudo docker run -ti --name (name of container) (image) bash 
-- Can use any unique name, and include an image that has already been pulled, such as cyberxsecurity/ansible 
+  - Can use any unique name, and include an image that has already been pulled, such as cyberxsecurity/ansible 
 
 To start a container: 
 
 - $ sudo docker start (name of container) 
-- Only start a container once if it is not running, otherwise it will create a new container each time it is started 
+  - Only start a container once if it is not running, otherwise it will create a new container each time it is started 
 
 To get into a container: 
 
 - $ sudo docker exec -ti (name of container) bash 
-- There are other commands that will do the same thing 
+  - There are other commands that will do the same thing 
 
 To see what Docker containers are available: 
 
 - $ sudo docker container ls -a 
-- This will list all the containers with their Container ID, Image, Command, Creation Date, Status, Ports, and Names 
+  - This will list all the containers with their Container ID, Image, Command, Creation Date, Status, Ports, and Names 
 
 To run an Ansible playbook ./yml file: 
 
 - $ ansible-playbook elk.yml 
-- Use for any Ansible playbook file 
+  - Use for any Ansible playbook file 
 
 
 
