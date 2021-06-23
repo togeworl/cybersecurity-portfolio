@@ -4,7 +4,7 @@
 
 The files in this repository were used to configure the network depicted below.
 
-!(https://github.com/togeworl/cybersecurity-portfolio/blob/2b013cd16c5ccc96f06877d3cf6a4cdc278b4ad5/Images/Network_Diagram.jpg)
+![Network Diagram](https://github.com/togeworl/cybersecurity-portfolio/blob/2b013cd16c5ccc96f06877d3cf6a4cdc278b4ad5/Images/Network_Diagram.jpg)
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the ELK installation playbook may be used to install only certain pieces of it, such as Filebeat.
 
